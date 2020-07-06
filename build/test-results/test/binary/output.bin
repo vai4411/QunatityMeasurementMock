@@ -1,0 +1,17 @@
+Ú16:53:36.633 [Test worker] DEBUG org.springframework.test.util.ReflectionTestUtils - Setting field 'quantityMeasurementService' of type [null] on target object [com.bl.quantitymeasurement.controller.QuantityMeasurementController@7e7f3872] or target class [class com.bl.quantitymeasurement.controller.QuantityMeasurementController] to value [quantityMeasurementService]
+è16:53:37.076 [Test worker] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - 3 mappings in <unknown>
+€16:53:37.298 [Test worker] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+æ16:53:37.375 [Test worker] DEBUG org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+Ä16:53:37.437 [Test worker] INFO org.springframework.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+v16:53:37.437 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
+É16:53:37.444 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected AcceptHeaderLocaleResolver
+{16:53:37.444 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected FixedThemeResolver
+π16:53:37.446 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@2f2a7ec1
+∞16:53:37.446 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@1a29f128
+Í16:53:37.447 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+16:53:37.447 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 9 ms
+é16:53:37.569 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - GET "/quantity/subUnits/Length", parameters={}
+ÿ16:53:37.595 [Test worker] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped to com.bl.quantitymeasurement.controller.QuantityMeasurementController#conversion(String)
+ÿ16:53:37.742 [Test worker] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+î16:53:37.744 [Test worker] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor - Writing [[Feet, Inch]]
+p16:53:37.777 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Completed 200 OK

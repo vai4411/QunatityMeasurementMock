@@ -4,7 +4,7 @@ import com.bl.quantitymeasurement.enums.BaseUnit;
 import com.bl.quantitymeasurement.enums.UnitConversion;
 import com.bl.quantitymeasurement.model.Quantity;
 import com.bl.quantitymeasurement.model.Response;
-import com.bl.quantitymeasurement.service.QuantityMeasurementService;
+import com.bl.quantitymeasurement.service.IQuantityMeasurementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ import java.util.List;
 public class QuantityMeasurementController {
 
     @Autowired
-    private QuantityMeasurementService quantityMeasurementService;
+    private IQuantityMeasurementService quantityMeasurementService;
 
     @GetMapping("/convert")
     public ResponseEntity conversion(@RequestBody Quantity quantity) {

@@ -4,7 +4,7 @@ import com.bl.quantitymeasurement.enums.BaseUnit;
 import com.bl.quantitymeasurement.enums.UnitConversion;
 
 public class Quantity {
-    private long quantity;
+    private double quantity;
     private BaseUnit baseUnit;
     private UnitConversion firstSubUnit;
     private UnitConversion secondSubUnit;
@@ -12,14 +12,14 @@ public class Quantity {
     public Quantity() {
     }
 
-    public Quantity(long quantity, BaseUnit baseUnit, UnitConversion firstSubUnit, UnitConversion secondSubUnit) {
+    public Quantity(double quantity, BaseUnit baseUnit, UnitConversion firstSubUnit, UnitConversion secondSubUnit) {
         this.quantity = quantity;
         this.baseUnit = baseUnit;
         this.firstSubUnit = firstSubUnit;
         this.secondSubUnit = secondSubUnit;
     }
 
-    public void setQuantity(long quantity) {
+    public void setQuantity(double quantity) {
         this.quantity = quantity;
     }
 
@@ -35,7 +35,7 @@ public class Quantity {
         this.secondSubUnit = secondSubUnit;
     }
 
-    public long getQuantity() {
+    public double getQuantity() {
         return quantity;
     }
 

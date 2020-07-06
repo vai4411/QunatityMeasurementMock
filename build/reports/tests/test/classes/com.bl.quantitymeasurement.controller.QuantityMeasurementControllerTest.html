@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">5.789s</div>
+<div class="counter">5.638s</div>
 <p>duration</p>
 </div>
 </td>
@@ -78,8 +78,8 @@
 </tr>
 </thead>
 <tr>
-<td class="success">givenQuantityMeasurement_WhenCallSubUnit_ThenReturnListOfUnits</td>
-<td class="success">5.789s</td>
+<td class="success">givenQuantityMeasurement_WhenOneYardConvertToInch_ThenReturnThirtySix</td>
+<td class="success">5.638s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -87,23 +87,24 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>19:45:36.164 [Test worker] DEBUG org.springframework.test.util.ReflectionTestUtils - Setting field 'quantityMeasurementService' of type [null] on target object [com.bl.quantitymeasurement.controller.QuantityMeasurementController@17d5c977] or target class [class com.bl.quantitymeasurement.controller.QuantityMeasurementController] to value [quantityMeasurementService]
-19:45:37.149 [Test worker] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - 2 mappings in &lt;unknown&gt;
-19:45:37.562 [Test worker] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-19:45:37.713 [Test worker] DEBUG org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
-19:45:37.863 [Test worker] INFO org.springframework.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
-19:45:37.863 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
-19:45:37.897 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected AcceptHeaderLocaleResolver
-19:45:37.908 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected FixedThemeResolver
-19:45:37.921 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@6caf6e31
-19:45:37.922 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@9129fea
-19:45:37.923 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
-19:45:37.924 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 61 ms
-19:45:38.381 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - GET &quot;/quantity/subUnits/Length&quot;, parameters={}
-19:45:38.400 [Test worker] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped to com.bl.quantitymeasurement.controller.QuantityMeasurementController#conversion(BaseUnit)
-19:45:38.536 [Test worker] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
-19:45:38.538 [Test worker] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor - Writing [[Feet, Inch]]
-19:45:38.568 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Completed 200 OK
+<pre>21:32:09.931 [Test worker] DEBUG org.springframework.test.util.ReflectionTestUtils - Setting field 'quantityMeasurementService' of type [null] on target object [com.bl.quantitymeasurement.controller.QuantityMeasurementController@30f87cf] or target class [class com.bl.quantitymeasurement.controller.QuantityMeasurementController] to value [quantityMeasurementService]
+21:32:10.702 [Test worker] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - 2 mappings in &lt;unknown&gt;
+21:32:11.104 [Test worker] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+21:32:11.252 [Test worker] DEBUG org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+21:32:11.350 [Test worker] INFO org.springframework.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+21:32:11.351 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Initializing Servlet ''
+21:32:11.364 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected AcceptHeaderLocaleResolver
+21:32:11.364 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected FixedThemeResolver
+21:32:11.367 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@3bc82be8
+21:32:11.377 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@3ec9f4aa
+21:32:11.378 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+21:32:11.379 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet - Completed initialization in 27 ms
+21:32:11.715 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - GET &quot;/quantity/convert&quot;, parameters={}
+21:32:11.728 [Test worker] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped to com.bl.quantitymeasurement.controller.QuantityMeasurementController#conversion(Quantity)
+21:32:11.916 [Test worker] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor - Read &quot;application/json&quot; to [com.bl.quantitymeasurement.model.Quantity@63117808]
+21:32:12.001 [Test worker] DEBUG org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+21:32:12.003 [Test worker] DEBUG org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor - Writing [com.bl.quantitymeasurement.model.Response@152e3200]
+21:32:12.029 [Test worker] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Completed 200 OK
 </pre>
 </span>
 </div>
@@ -115,7 +116,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 6.1</a> at Jul 6, 2020, 7:45:38 PM</p>
+<a href="http://www.gradle.org">Gradle 6.1</a> at Jul 6, 2020, 9:32:12 PM</p>
 </div>
 </div>
 </body>

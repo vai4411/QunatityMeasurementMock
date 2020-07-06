@@ -3,6 +3,7 @@ package com.bl.quantitymeasurement.controller;
 import com.bl.quantitymeasurement.enums.BaseUnit;
 import com.bl.quantitymeasurement.enums.UnitConversion;
 import com.bl.quantitymeasurement.model.Quantity;
+import com.bl.quantitymeasurement.model.Response;
 import com.bl.quantitymeasurement.service.QuantityMeasurementService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
@@ -15,6 +16,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -49,23 +51,22 @@ public class QuantityMeasurementControllerTest {
     }
 
     @Test
-    public void givenQuantityMeasurement_WhenRequestPassSuccessfully_ThenReturnValueOfUnit() throws Exception {
+    public void givenQuantityMeasurement_WhenOneFeetConvertIntoInch_ThenReturnTwelve() throws Exception {
         Quantity quantity = new Quantity();
         quantity.setQuantity(1);
         quantity.setBaseUnit(BaseUnit.Length);
         quantity.setFirstSubUnit(UnitConversion.Feet);
         quantity.setSecondSubUnit(UnitConversion.Inch);
+        String response = mapper.writeValueAsString(new Response("Unit Converted Successfully", (long) 12.0));
         Mockito.when(quantityMeasurementService.unitConversion(Mockito.any())).thenReturn((long) 12.0);
         String data = mapper.writeValueAsString(quantity);
         MvcResult result = mockMvc.perform(get("/quantity/convert")
-                .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(data))
                 .andExpect(status().isOk())
                 .andReturn();
         String content = result.getResponse().getContentAsString();
-        long value = Long.parseLong(content);
-        Assert.assertEquals(12,value);
+        Assert.assertEquals(response,content);
     }
 
     @Test
@@ -80,5 +81,24 @@ public class QuantityMeasurementControllerTest {
                 .andReturn();
         String content = result.getResponse().getContentAsString();
         Assert.assertEquals(data,content);
+    }
+
+    @Test
+    public void givenQuantityMeasurement_WhenOneYardConvertToInch_ThenReturnThirtySix() throws Exception {
+        Quantity quantity = new Quantity();
+        quantity.setQuantity(1);
+        quantity.setBaseUnit(BaseUnit.Length);
+        quantity.setFirstSubUnit(UnitConversion.Yard);
+        quantity.setSecondSubUnit(UnitConversion.Inch);
+        String response = mapper.writeValueAsString(new Response("Unit Converted Successfully", (long) 36.0));
+        Mockito.when(quantityMeasurementService.unitConversion(Mockito.any())).thenReturn((long) 36.0);
+        String data = mapper.writeValueAsString(quantity);
+        MvcResult result = mockMvc.perform(get("/quantity/convert")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(data))
+                .andExpect(status().isOk())
+                .andReturn();
+        String content = result.getResponse().getContentAsString();
+        Assert.assertEquals(response,content);
     }
 }

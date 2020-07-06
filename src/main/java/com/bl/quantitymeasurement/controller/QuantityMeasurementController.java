@@ -3,6 +3,7 @@ package com.bl.quantitymeasurement.controller;
 import com.bl.quantitymeasurement.enums.BaseUnit;
 import com.bl.quantitymeasurement.enums.UnitConversion;
 import com.bl.quantitymeasurement.model.Quantity;
+import com.bl.quantitymeasurement.model.Response;
 import com.bl.quantitymeasurement.service.QuantityMeasurementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,9 +20,9 @@ public class QuantityMeasurementController {
     private QuantityMeasurementService quantityMeasurementService;
 
     @GetMapping("/convert")
-    public ResponseEntity<Long> conversion(@RequestBody Quantity quantity) {
-        long result = quantityMeasurementService.unitConversion(quantity);
-        return new ResponseEntity<> (result, HttpStatus.OK);
+    public ResponseEntity conversion(@RequestBody Quantity quantity) {
+        return new ResponseEntity(new Response("Unit Converted Successfully",
+                quantityMeasurementService.unitConversion(quantity)),HttpStatus.OK);
     }
 
     @GetMapping("/subUnits/{baseUnit}")

@@ -2,8 +2,8 @@ package com.bl.quantitymeasurement.enums;
 
 public enum UnitConversion {
     Feet(12, BaseUnit.Length),
-    Inch(1, BaseUnit.Length);
-
+    Inch(1, BaseUnit.Length),
+    Yard(36,BaseUnit.Length);
 
     private final long unit;
     private final BaseUnit baseUnit;

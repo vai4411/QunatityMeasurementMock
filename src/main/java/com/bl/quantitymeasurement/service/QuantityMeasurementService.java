@@ -9,7 +9,7 @@ import java.util.List;
 public class QuantityMeasurementService implements IQuantityMeasurementService {
 
     @Override
-    public long unitConversion(Quantity quantity) {
+    public double unitConversion(Quantity quantity) {
         return 0;
     }
 

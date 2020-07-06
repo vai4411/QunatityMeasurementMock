@@ -7,6 +7,6 @@ import com.bl.quantitymeasurement.model.Quantity;
 import java.util.List;
 
 public interface IQuantityMeasurementService {
-    long unitConversion(Quantity quantity);
+    double unitConversion(Quantity quantity);
     List<UnitConversion> getSubUnits(BaseUnit baseUnit);
 }

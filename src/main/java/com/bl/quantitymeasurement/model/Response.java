@@ -5,9 +5,9 @@ import java.io.Serializable;
 public class Response implements Serializable {
 
     private String message;
-    private long result;
+    private double result;
 
-    public Response(String message, long result) {
+    public Response(String message, double result) {
         this.message = message;
         this.result = result;
     }
@@ -20,7 +20,7 @@ public class Response implements Serializable {
         this.message = message;
     }
 
-    public long getResult() {
+    public double getResult() {
         return result;
     }
 

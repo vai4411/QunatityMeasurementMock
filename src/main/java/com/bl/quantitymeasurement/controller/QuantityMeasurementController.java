@@ -2,6 +2,7 @@ package com.bl.quantitymeasurement.controller;
 
 import com.bl.quantitymeasurement.enums.BaseUnit;
 import com.bl.quantitymeasurement.enums.UnitConversion;
+import com.bl.quantitymeasurement.exception.QuantityMeasurementException;
 import com.bl.quantitymeasurement.model.Quantity;
 import com.bl.quantitymeasurement.model.Response;
 import com.bl.quantitymeasurement.service.IQuantityMeasurementService;
@@ -20,7 +21,7 @@ public class QuantityMeasurementController {
     private IQuantityMeasurementService quantityMeasurementService;
 
     @GetMapping("/convert")
-    public ResponseEntity conversion(@RequestBody Quantity quantity) {
+    public ResponseEntity conversion(@RequestBody Quantity quantity) throws QuantityMeasurementException {
         return new ResponseEntity(new Response("Unit Converted Successfully",
                 quantityMeasurementService.unitConversion(quantity)),HttpStatus.OK);
     }

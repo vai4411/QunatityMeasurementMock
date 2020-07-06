@@ -12,13 +12,6 @@ public class Quantity {
     public Quantity() {
     }
 
-    public Quantity(double quantity, BaseUnit baseUnit, UnitConversion firstSubUnit, UnitConversion secondSubUnit) {
-        this.quantity = quantity;
-        this.baseUnit = baseUnit;
-        this.firstSubUnit = firstSubUnit;
-        this.secondSubUnit = secondSubUnit;
-    }
-
     public void setQuantity(double quantity) {
         this.quantity = quantity;
     }

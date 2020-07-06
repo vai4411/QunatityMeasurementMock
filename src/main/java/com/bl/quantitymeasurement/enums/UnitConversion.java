@@ -4,7 +4,9 @@ public enum UnitConversion {
     Feet(12, BaseUnit.Length),
     Inch(1, BaseUnit.Length),
     Yard(36,BaseUnit.Length),
-    CM(0.4,BaseUnit.Length);
+    CM(0.4,BaseUnit.Length),
+
+    KG(1,BaseUnit.Weight);
 
     private final double unit;
     private final BaseUnit baseUnit;

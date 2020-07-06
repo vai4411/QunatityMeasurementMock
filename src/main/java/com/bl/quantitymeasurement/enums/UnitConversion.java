@@ -6,7 +6,10 @@ public enum UnitConversion {
     Yard(36,BaseUnit.Length),
     CM(0.4,BaseUnit.Length),
 
-    KG(1,BaseUnit.Weight);
+    KG(1,BaseUnit.Weight),
+
+    Celsius(1,BaseUnit.Temperature),
+    Fahrenheit(1,BaseUnit.Temperature);
 
     private final double unit;
     private final BaseUnit baseUnit;

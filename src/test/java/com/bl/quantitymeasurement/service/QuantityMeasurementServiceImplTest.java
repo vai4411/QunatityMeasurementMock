@@ -28,7 +28,7 @@ public class QuantityMeasurementServiceImplTest {
     }
 
     @Test
-    public void givenQuantityMeasurement_WhenTwoDifferentBaseUnits_ThenThrowException() throws QuantityMeasurementException {
+    public void givenQuantityMeasurement_WhenTwoDifferentBaseUnits_ThenThrowException() {
         try {
             Quantity quantity = new Quantity();
             quantity.setQuantity(1);
@@ -39,5 +39,16 @@ public class QuantityMeasurementServiceImplTest {
         } catch (QuantityMeasurementException e) {
             Assert.assertEquals("Base Units Not Matches",e.getMessage());
         }
+    }
+
+    @Test
+    public void givenQuantityMeasurement_WhenOneCelsiusConvertIntoFahrenheit_ThenReturnThirtyThreePointEight() throws QuantityMeasurementException {
+        Quantity quantity = new Quantity();
+        quantity.setQuantity(1);
+        quantity.setBaseUnit(BaseUnit.Temperature);
+        quantity.setFirstSubUnit(UnitConversion.Celsius);
+        quantity.setSecondSubUnit(UnitConversion.Fahrenheit);
+        double result = quantityMeasurementService.unitConversion(quantity);
+        Assert.assertEquals(33.8,result,0.0);
     }
 }

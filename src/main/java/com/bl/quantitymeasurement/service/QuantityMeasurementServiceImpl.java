@@ -13,14 +13,15 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
 
     @Override
     public double unitConversion(Quantity quantity) throws QuantityMeasurementException {
-        try {
-            double result = (quantity.getFirstSubUnit().getBaseUnit().equals(quantity.getSecondSubUnit().getBaseUnit()))
-                    ? quantity.getQuantity() * quantity.getFirstSubUnit().getUnit()
-                    / quantity.getSecondSubUnit().getUnit() : null;
-            return result;
-        }catch (NullPointerException e) {
-            throw new QuantityMeasurementException("Base Units Not Matches");
+        if (quantity.getFirstSubUnit().getBaseUnit().equals(quantity.getSecondSubUnit().getBaseUnit())) {
+            if (quantity.getFirstSubUnit().equals(UnitConversion.Celsius) && quantity.getSecondSubUnit().equals(UnitConversion.Fahrenheit)) {
+                return quantity.getFirstSubUnit().getUnit() * 9 / 5 + 32; }
+            if (quantity.getFirstSubUnit().equals(UnitConversion.Fahrenheit) && quantity.getSecondSubUnit().equals(UnitConversion.Celsius)) {
+                return quantity.getFirstSubUnit().getUnit() - 32 * 5 / 9; }
+            return quantity.getQuantity() * quantity.getFirstSubUnit().getUnit() / quantity.getSecondSubUnit().getUnit();
         }
+        else
+            throw new QuantityMeasurementException("Base Units Not Matches");
     }
 
     @Override

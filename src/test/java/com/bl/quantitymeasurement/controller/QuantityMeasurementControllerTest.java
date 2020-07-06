@@ -105,12 +105,31 @@ public class QuantityMeasurementControllerTest {
     @Test
     public void givenQuantityMeasurement_WhenFiveCMConvertToInch_ThenReturnTwoInResponse() throws Exception {
         Quantity quantity = new Quantity();
-        quantity.setQuantity(1);
+        quantity.setQuantity(5);
         quantity.setBaseUnit(BaseUnit.Length);
-        quantity.setFirstSubUnit(UnitConversion.Yard);
+        quantity.setFirstSubUnit(UnitConversion.CM);
         quantity.setSecondSubUnit(UnitConversion.Inch);
         String response = mapper.writeValueAsString(new Response("Unit Converted Successfully", 2.0));
         Mockito.when(quantityMeasurementService.unitConversion(Mockito.any())).thenReturn(2.0);
+        String data = mapper.writeValueAsString(quantity);
+        MvcResult result = mockMvc.perform(get("/quantity/convert")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(data))
+                .andExpect(status().isOk())
+                .andReturn();
+        String content = result.getResponse().getContentAsString();
+        Assert.assertEquals(response,content);
+    }
+
+    @Test
+    public void givenQuantityMeasurement_WhenTwoInchConvertToCM_ThenReturnFiveInResponse() throws Exception {
+        Quantity quantity = new Quantity();
+        quantity.setQuantity(2);
+        quantity.setBaseUnit(BaseUnit.Length);
+        quantity.setFirstSubUnit(UnitConversion.Inch);
+        quantity.setSecondSubUnit(UnitConversion.CM);
+        String response = mapper.writeValueAsString(new Response("Unit Converted Successfully", 5.0));
+        Mockito.when(quantityMeasurementService.unitConversion(Mockito.any())).thenReturn(5.0);
         String data = mapper.writeValueAsString(quantity);
         MvcResult result = mockMvc.perform(get("/quantity/convert")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)

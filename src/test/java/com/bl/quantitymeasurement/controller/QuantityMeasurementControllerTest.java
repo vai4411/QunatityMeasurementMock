@@ -139,4 +139,23 @@ public class QuantityMeasurementControllerTest {
         String content = result.getResponse().getContentAsString();
         Assert.assertEquals(response,content);
     }
+
+    @Test
+    public void givenQuantityMeasurement_WhenYardConvertToCM_ThenReturnNinetyInResponse() throws Exception {
+        Quantity quantity = new Quantity();
+        quantity.setQuantity(1);
+        quantity.setBaseUnit(BaseUnit.Length);
+        quantity.setFirstSubUnit(UnitConversion.Inch);
+        quantity.setSecondSubUnit(UnitConversion.CM);
+        String response = mapper.writeValueAsString(new Response("Unit Converted Successfully", 90.0));
+        Mockito.when(quantityMeasurementService.unitConversion(Mockito.any())).thenReturn(90.0);
+        String data = mapper.writeValueAsString(quantity);
+        MvcResult result = mockMvc.perform(get("/quantity/convert")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(data))
+                .andExpect(status().isOk())
+                .andReturn();
+        String content = result.getResponse().getContentAsString();
+        Assert.assertEquals(response,content);
+    }
 }

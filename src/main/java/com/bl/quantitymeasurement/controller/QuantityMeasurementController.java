@@ -30,4 +30,10 @@ public class QuantityMeasurementController {
         List<UnitConversion> result = quantityMeasurementService.getSubUnits(baseUnit);
         return result;
     }
+
+    @GetMapping("/baseUnits")
+    public List<BaseUnit> baseUnits() {
+        List<BaseUnit> result = quantityMeasurementService.getBaseUnits();
+        return result;
+    }
 }

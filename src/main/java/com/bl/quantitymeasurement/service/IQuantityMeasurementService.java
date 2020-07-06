@@ -9,4 +9,5 @@ import java.util.List;
 public interface IQuantityMeasurementService {
     double unitConversion(Quantity quantity);
     List<UnitConversion> getSubUnits(BaseUnit baseUnit);
+    List<BaseUnit> getBaseUnits();
 }

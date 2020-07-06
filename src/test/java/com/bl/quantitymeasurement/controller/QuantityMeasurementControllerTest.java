@@ -158,4 +158,17 @@ public class QuantityMeasurementControllerTest {
         String content = result.getResponse().getContentAsString();
         Assert.assertEquals(response,content);
     }
+
+    @Test
+    public void givenQuantityMeasurement_WhenCallBaseUnit_ThenReturnListOfUnits() throws Exception {
+        List<BaseUnit> units = new ArrayList<>();
+        units.add(BaseUnit.Length);
+        Mockito.when(quantityMeasurementService.getBaseUnits()).thenReturn(units);
+        String data = mapper.writeValueAsString(units);
+        MvcResult result = mockMvc.perform(get("/quantity/baseUnits"))
+                .andExpect(status().isOk())
+                .andReturn();
+        String content = result.getResponse().getContentAsString();
+        Assert.assertEquals(data,content);
+    }
 }

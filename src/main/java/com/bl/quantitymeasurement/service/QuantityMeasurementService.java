@@ -17,4 +17,9 @@ public class QuantityMeasurementService implements IQuantityMeasurementService {
     public List<UnitConversion> getSubUnits(BaseUnit baseUnit) {
         return null;
     }
+
+    @Override
+    public List<BaseUnit> getBaseUnits() {
+        return null;
+    }
 }

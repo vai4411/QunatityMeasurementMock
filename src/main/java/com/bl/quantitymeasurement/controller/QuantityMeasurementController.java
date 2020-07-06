@@ -1,5 +1,7 @@
 package com.bl.quantitymeasurement.controller;
 
+import com.bl.quantitymeasurement.enums.BaseUnit;
+import com.bl.quantitymeasurement.enums.UnitConversion;
 import com.bl.quantitymeasurement.model.Quantity;
 import com.bl.quantitymeasurement.service.QuantityMeasurementService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +24,9 @@ public class QuantityMeasurementController {
         return new ResponseEntity<> (result, HttpStatus.OK);
     }
 
-
+    @GetMapping("/subUnits/{baseUnit}")
+    public List<UnitConversion> conversion(@PathVariable BaseUnit baseUnit) {
+        List<UnitConversion> result = quantityMeasurementService.getSubUnits(baseUnit);
+        return result;
+    }
 }

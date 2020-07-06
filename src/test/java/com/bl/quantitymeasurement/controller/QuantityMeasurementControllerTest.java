@@ -1,11 +1,9 @@
 package com.bl.quantitymeasurement.controller;
 
 import com.bl.quantitymeasurement.enums.BaseUnit;
-import com.bl.quantitymeasurement.enums.SubUnits;
 import com.bl.quantitymeasurement.enums.UnitConversion;
 import com.bl.quantitymeasurement.model.Quantity;
 import com.bl.quantitymeasurement.service.QuantityMeasurementService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
 import org.junit.Before;
@@ -54,9 +52,9 @@ public class QuantityMeasurementControllerTest {
     public void givenQuantityMeasurement_WhenRequestPassSuccessfully_ThenReturnValueOfUnit() throws Exception {
         Quantity quantity = new Quantity();
         quantity.setQuantity(1);
-        quantity.setBaseUnit(BaseUnit.Length.getUnit());
-        quantity.setFirstSubUnit(UnitConversion.Feet.getUnit());
-        quantity.setSecondSubUnit(UnitConversion.Inch.getUnit());
+        quantity.setBaseUnit(BaseUnit.Length);
+        quantity.setFirstSubUnit(UnitConversion.Feet);
+        quantity.setSecondSubUnit(UnitConversion.Inch);
         Mockito.when(quantityMeasurementService.unitConversion(Mockito.any())).thenReturn((long) 12.0);
         String data = mapper.writeValueAsString(quantity);
         MvcResult result = mockMvc.perform(get("/quantity/convert")
@@ -70,5 +68,17 @@ public class QuantityMeasurementControllerTest {
         Assert.assertEquals(12,value);
     }
 
-
+    @Test
+    public void givenQuantityMeasurement_WhenCallSubUnit_ThenReturnListOfUnits() throws Exception {
+        List<UnitConversion> units = new ArrayList<>();
+        units.add(UnitConversion.Feet);
+        units.add(UnitConversion.Inch);
+        Mockito.when(quantityMeasurementService.getSubUnits(Mockito.any())).thenReturn(units);
+        String data = mapper.writeValueAsString(units);
+        MvcResult result = mockMvc.perform(get("/quantity/subUnits/Length"))
+                .andExpect(status().isOk())
+                .andReturn();
+        String content = result.getResponse().getContentAsString();
+        Assert.assertEquals(data,content);
+    }
 }

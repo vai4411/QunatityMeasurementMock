@@ -1,15 +1,18 @@
 package com.bl.quantitymeasurement.model;
 
+import com.bl.quantitymeasurement.enums.BaseUnit;
+import com.bl.quantitymeasurement.enums.UnitConversion;
+
 public class Quantity {
     private long quantity;
-    private String baseUnit;
-    private long firstSubUnit;
-    private long secondSubUnit;
+    private BaseUnit baseUnit;
+    private UnitConversion firstSubUnit;
+    private UnitConversion secondSubUnit;
 
     public Quantity() {
     }
 
-    public Quantity(long quantity, String baseUnit, long firstSubUnit, long secondSubUnit) {
+    public Quantity(long quantity, BaseUnit baseUnit, UnitConversion firstSubUnit, UnitConversion secondSubUnit) {
         this.quantity = quantity;
         this.baseUnit = baseUnit;
         this.firstSubUnit = firstSubUnit;
@@ -20,15 +23,15 @@ public class Quantity {
         this.quantity = quantity;
     }
 
-    public void setBaseUnit(String baseUnit) {
+    public void setBaseUnit(BaseUnit baseUnit) {
         this.baseUnit = baseUnit;
     }
 
-    public void setFirstSubUnit(long firstSubUnit) {
+    public void setFirstSubUnit(UnitConversion firstSubUnit) {
         this.firstSubUnit = firstSubUnit;
     }
 
-    public void setSecondSubUnit(long secondSubUnit) {
+    public void setSecondSubUnit(UnitConversion secondSubUnit) {
         this.secondSubUnit = secondSubUnit;
     }
 
@@ -36,15 +39,15 @@ public class Quantity {
         return quantity;
     }
 
-    public String getBaseUnit() {
+    public BaseUnit getBaseUnit() {
         return baseUnit;
     }
 
-    public long getFirstSubUnit() {
+    public UnitConversion getFirstSubUnit() {
         return firstSubUnit;
     }
 
-    public long getSecondSubUnit() {
+    public UnitConversion getSecondSubUnit() {
         return secondSubUnit;
     }
 }

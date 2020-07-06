@@ -8,7 +8,15 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.test.web.servlet.MvcResult;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(MockitoJUnitRunner.class)
 public class QuantityMeasurementServiceImplTest {
@@ -50,5 +58,16 @@ public class QuantityMeasurementServiceImplTest {
         quantity.setSecondSubUnit(UnitConversion.Fahrenheit);
         double result = quantityMeasurementService.unitConversion(quantity);
         Assert.assertEquals(33.8,result,0.0);
+    }
+
+    @Test
+    public void givenQuantityMeasurement_WhenCallBaseUnit_ThenReturnListOfUnits() {
+        List<BaseUnit> units = new ArrayList<>();
+        units.add(BaseUnit.Length);
+        units.add(BaseUnit.Weight);
+        units.add(BaseUnit.Volume);
+        units.add(BaseUnit.Temperature);
+        List baseUnits = quantityMeasurementService.getBaseUnits();
+        Assert.assertEquals(units,baseUnits);
     }
 }

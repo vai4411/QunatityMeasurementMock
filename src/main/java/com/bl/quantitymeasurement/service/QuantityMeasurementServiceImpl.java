@@ -6,6 +6,7 @@ import com.bl.quantitymeasurement.exception.QuantityMeasurementException;
 import com.bl.quantitymeasurement.model.Quantity;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -31,6 +32,6 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
 
     @Override
     public List<BaseUnit> getBaseUnits() {
-        return null;
+        return Arrays.asList(BaseUnit.values());
     }
 }

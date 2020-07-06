@@ -1,5 +1,5 @@
 package com.bl.quantitymeasurement.enums;
 
 public enum  BaseUnit {
-    Length,Weight,Temperature
+    Length,Weight,Volume,Temperature
 }

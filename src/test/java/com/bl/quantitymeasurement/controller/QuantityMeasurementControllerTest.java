@@ -350,4 +350,22 @@ public class QuantityMeasurementControllerTest {
         String content = result.getResponse().getContentAsString();
         Assert.assertEquals(response,content);
     }
+
+    @Test
+    public void givenQuantityMeasurement_WhenThousandMLConvertToGallon_ThenReturnThreePointSeventyEightResponse() throws Exception {
+        Quantity quantity = new Quantity();
+        quantity.setQuantity(1000);
+        quantity.setFirstSubUnit(UnitConversion.Millilitre);
+        quantity.setSecondSubUnit(UnitConversion.Gallon);
+        String response = mapper.writeValueAsString(new Response("Unit Converted Successfully", 3.78));
+        Mockito.when(quantityMeasurementServiceImpl.unitConversion(Mockito.any())).thenReturn(3.78);
+        String data = mapper.writeValueAsString(quantity);
+        MvcResult result = mockMvc.perform(post("/quantity/convertSubUnitsNames")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(data))
+                .andExpect(status().isOk())
+                .andReturn();
+        String content = result.getResponse().getContentAsString();
+        Assert.assertEquals(response,content);
+    }
 }

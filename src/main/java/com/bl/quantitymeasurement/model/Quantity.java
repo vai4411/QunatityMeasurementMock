@@ -1,11 +1,9 @@
 package com.bl.quantitymeasurement.model;
 
-import com.bl.quantitymeasurement.enums.BaseUnit;
 import com.bl.quantitymeasurement.enums.UnitConversion;
 
 public class Quantity {
     private double quantity;
-    private BaseUnit baseUnit;
     private UnitConversion firstSubUnit;
     private UnitConversion secondSubUnit;
 
@@ -14,10 +12,6 @@ public class Quantity {
 
     public void setQuantity(double quantity) {
         this.quantity = quantity;
-    }
-
-    public void setBaseUnit(BaseUnit baseUnit) {
-        this.baseUnit = baseUnit;
     }
 
     public void setFirstSubUnit(UnitConversion firstSubUnit) {
@@ -30,10 +24,6 @@ public class Quantity {
 
     public double getQuantity() {
         return quantity;
-    }
-
-    public BaseUnit getBaseUnit() {
-        return baseUnit;
     }
 
     public UnitConversion getFirstSubUnit() {

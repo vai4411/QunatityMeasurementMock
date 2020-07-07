@@ -14,7 +14,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.MediaType;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -50,16 +51,31 @@ public class QuantityMeasurementControllerTest {
     }
 
     @Test
+    public void givenQuantityMeasurement_WhenCallBaseUnit_ThenReturnListOfUnits() throws Exception {
+        List<BaseUnit> units = new ArrayList<>();
+        units.add(BaseUnit.Length);
+        units.add(BaseUnit.Weight);
+        units.add(BaseUnit.Temperature);
+        units.add(BaseUnit.Volume);
+        Mockito.when(quantityMeasurementServiceImpl.getBaseUnits()).thenReturn(units);
+        String data = mapper.writeValueAsString(units);
+        MvcResult result = mockMvc.perform(get("/quantity/baseUnits"))
+                .andExpect(status().isOk())
+                .andReturn();
+        String content = result.getResponse().getContentAsString();
+        Assert.assertEquals(data,content);
+    }
+
+    @Test
     public void givenQuantityMeasurement_WhenOneFeetConvertIntoInch_ThenReturnTwelveInResponse() throws Exception {
         Quantity quantity = new Quantity();
         quantity.setQuantity(1);
-        quantity.setBaseUnit(BaseUnit.Length);
         quantity.setFirstSubUnit(UnitConversion.Feet);
         quantity.setSecondSubUnit(UnitConversion.Inch);
         String response = mapper.writeValueAsString(new Response("Unit Converted Successfully", 12.0));
         Mockito.when(quantityMeasurementServiceImpl.unitConversion(Mockito.any())).thenReturn(12.0);
         String data = mapper.writeValueAsString(quantity);
-        MvcResult result = mockMvc.perform(get("/quantity/convert")
+        MvcResult result = mockMvc.perform(post("/quantity/convertSubUnitsNames")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(data))
                 .andExpect(status().isOk())
@@ -69,7 +85,7 @@ public class QuantityMeasurementControllerTest {
     }
 
     @Test
-    public void givenQuantityMeasurement_WhenCallSubUnit_ThenReturnListOfUnits() throws Exception {
+    public void givenQuantityMeasurement_WhenCallSubUnitOfLength_ThenReturnListOfUnits() throws Exception {
         List<UnitConversion> units = new ArrayList<>();
         units.add(UnitConversion.Feet);
         units.add(UnitConversion.Inch);
@@ -86,13 +102,12 @@ public class QuantityMeasurementControllerTest {
     public void givenQuantityMeasurement_WhenOneYardConvertToInch_ThenReturnThirtySixInResponse() throws Exception {
         Quantity quantity = new Quantity();
         quantity.setQuantity(1);
-        quantity.setBaseUnit(BaseUnit.Length);
         quantity.setFirstSubUnit(UnitConversion.Yard);
         quantity.setSecondSubUnit(UnitConversion.Inch);
         String response = mapper.writeValueAsString(new Response("Unit Converted Successfully", 36.0));
         Mockito.when(quantityMeasurementServiceImpl.unitConversion(Mockito.any())).thenReturn(36.0);
         String data = mapper.writeValueAsString(quantity);
-        MvcResult result = mockMvc.perform(get("/quantity/convert")
+        MvcResult result = mockMvc.perform(post("/quantity/convertSubUnitsNames")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(data))
                 .andExpect(status().isOk())
@@ -105,13 +120,12 @@ public class QuantityMeasurementControllerTest {
     public void givenQuantityMeasurement_WhenFiveCMConvertToInch_ThenReturnTwoInResponse() throws Exception {
         Quantity quantity = new Quantity();
         quantity.setQuantity(5);
-        quantity.setBaseUnit(BaseUnit.Length);
-        quantity.setFirstSubUnit(UnitConversion.CM);
+        quantity.setFirstSubUnit(UnitConversion.Centimeter);
         quantity.setSecondSubUnit(UnitConversion.Inch);
         String response = mapper.writeValueAsString(new Response("Unit Converted Successfully", 2.0));
         Mockito.when(quantityMeasurementServiceImpl.unitConversion(Mockito.any())).thenReturn(2.0);
         String data = mapper.writeValueAsString(quantity);
-        MvcResult result = mockMvc.perform(get("/quantity/convert")
+        MvcResult result = mockMvc.perform(post("/quantity/convertSubUnitsNames")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(data))
                 .andExpect(status().isOk())
@@ -124,13 +138,12 @@ public class QuantityMeasurementControllerTest {
     public void givenQuantityMeasurement_WhenTwoInchConvertToCM_ThenReturnFiveInResponse() throws Exception {
         Quantity quantity = new Quantity();
         quantity.setQuantity(2);
-        quantity.setBaseUnit(BaseUnit.Length);
         quantity.setFirstSubUnit(UnitConversion.Inch);
-        quantity.setSecondSubUnit(UnitConversion.CM);
+        quantity.setSecondSubUnit(UnitConversion.Centimeter);
         String response = mapper.writeValueAsString(new Response("Unit Converted Successfully", 5.0));
         Mockito.when(quantityMeasurementServiceImpl.unitConversion(Mockito.any())).thenReturn(5.0);
         String data = mapper.writeValueAsString(quantity);
-        MvcResult result = mockMvc.perform(get("/quantity/convert")
+        MvcResult result = mockMvc.perform(post("/quantity/convertSubUnitsNames")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(data))
                 .andExpect(status().isOk())
@@ -143,13 +156,12 @@ public class QuantityMeasurementControllerTest {
     public void givenQuantityMeasurement_WhenYardConvertToCM_ThenReturnNinetyInResponse() throws Exception {
         Quantity quantity = new Quantity();
         quantity.setQuantity(1);
-        quantity.setBaseUnit(BaseUnit.Length);
         quantity.setFirstSubUnit(UnitConversion.Inch);
-        quantity.setSecondSubUnit(UnitConversion.CM);
+        quantity.setSecondSubUnit(UnitConversion.Centimeter);
         String response = mapper.writeValueAsString(new Response("Unit Converted Successfully", 90.0));
         Mockito.when(quantityMeasurementServiceImpl.unitConversion(Mockito.any())).thenReturn(90.0);
         String data = mapper.writeValueAsString(quantity);
-        MvcResult result = mockMvc.perform(get("/quantity/convert")
+        MvcResult result = mockMvc.perform(post("/quantity/convertSubUnitsNames")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(data))
                 .andExpect(status().isOk())
@@ -159,15 +171,38 @@ public class QuantityMeasurementControllerTest {
     }
 
     @Test
-    public void givenQuantityMeasurement_WhenCallBaseUnit_ThenReturnListOfUnits() throws Exception {
-        List<BaseUnit> units = new ArrayList<>();
-        units.add(BaseUnit.Length);
-        Mockito.when(quantityMeasurementServiceImpl.getBaseUnits()).thenReturn(units);
-        String data = mapper.writeValueAsString(units);
-        MvcResult result = mockMvc.perform(get("/quantity/baseUnits"))
+    public void givenQuantityMeasurement_WhenOneFeetConvertToCM_ThenReturnThirtyInResponse() throws Exception {
+        Quantity quantity = new Quantity();
+        quantity.setQuantity(1);
+        quantity.setFirstSubUnit(UnitConversion.Feet);
+        quantity.setSecondSubUnit(UnitConversion.Centimeter);
+        String response = mapper.writeValueAsString(new Response("Unit Converted Successfully", 30.0));
+        Mockito.when(quantityMeasurementServiceImpl.unitConversion(Mockito.any())).thenReturn(30.0);
+        String data = mapper.writeValueAsString(quantity);
+        MvcResult result = mockMvc.perform(post("/quantity/convertSubUnitsNames")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(data))
                 .andExpect(status().isOk())
                 .andReturn();
         String content = result.getResponse().getContentAsString();
-        Assert.assertEquals(data,content);
+        Assert.assertEquals(response,content);
+    }
+
+    @Test
+    public void givenQuantityMeasurement_WhenTwelveInchConvertToFeet_ThenReturnOneInResponse() throws Exception {
+        Quantity quantity = new Quantity();
+        quantity.setQuantity(12);
+        quantity.setFirstSubUnit(UnitConversion.Feet);
+        quantity.setSecondSubUnit(UnitConversion.Centimeter);
+        String response = mapper.writeValueAsString(new Response("Unit Converted Successfully", 1.0));
+        Mockito.when(quantityMeasurementServiceImpl.unitConversion(Mockito.any())).thenReturn(1.0);
+        String data = mapper.writeValueAsString(quantity);
+        MvcResult result = mockMvc.perform(post("/quantity/convertSubUnitsNames")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(data))
+                .andExpect(status().isOk())
+                .andReturn();
+        String content = result.getResponse().getContentAsString();
+        Assert.assertEquals(response,content);
     }
 }

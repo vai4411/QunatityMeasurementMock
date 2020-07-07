@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class QuantityMeasurementServiceImpl implements IQuantityMeasurementService {
@@ -15,19 +16,22 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
     @Override
     public double unitConversion(Quantity quantity) throws QuantityMeasurementException {
         if (quantity.getFirstSubUnit().getBaseUnit().equals(quantity.getSecondSubUnit().getBaseUnit())) {
-            if (quantity.getFirstSubUnit().equals(UnitConversion.Celsius) && quantity.getSecondSubUnit().equals(UnitConversion.Fahrenheit)) {
-                return quantity.getFirstSubUnit().getUnit() * 9 / 5 + 32; }
-            if (quantity.getFirstSubUnit().equals(UnitConversion.Fahrenheit) && quantity.getSecondSubUnit().equals(UnitConversion.Celsius)) {
-                return quantity.getFirstSubUnit().getUnit() - 32 * 5 / 9; }
-            return quantity.getQuantity() * quantity.getFirstSubUnit().getUnit() / quantity.getSecondSubUnit().getUnit();
-        }
-        else
-            throw new QuantityMeasurementException("Base Units Not Matches");
+                if (quantity.getFirstSubUnit().equals(UnitConversion.Celsius) && quantity.getSecondSubUnit().equals(UnitConversion.Fahrenheit)) {
+                    return (quantity.getQuantity() * quantity.getFirstSubUnit().getUnit()) + 32;
+                }
+                if (quantity.getFirstSubUnit().equals(UnitConversion.Fahrenheit) && quantity.getSecondSubUnit().equals(UnitConversion.Celsius)) {
+                    return (quantity.getQuantity() - 32) * quantity.getFirstSubUnit().getUnit();
+                }
+                return quantity.getQuantity() * quantity.getFirstSubUnit().getUnit() / quantity.getSecondSubUnit().getUnit();
+        } else
+            throw new QuantityMeasurementException(quantity.getFirstSubUnit()+" Not Converted Into "+quantity.getSecondSubUnit());
     }
 
     @Override
     public List<UnitConversion> getSubUnits(BaseUnit baseUnit) {
-        return null;
+        return Arrays.stream(UnitConversion.values())
+                .filter(qUnit -> qUnit.getBaseUnit().equals(baseUnit))
+                .collect(Collectors.toList());
     }
 
     @Override

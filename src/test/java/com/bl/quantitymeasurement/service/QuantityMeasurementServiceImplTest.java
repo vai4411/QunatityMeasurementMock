@@ -8,15 +8,10 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(MockitoJUnitRunner.class)
 public class QuantityMeasurementServiceImplTest {
@@ -28,7 +23,6 @@ public class QuantityMeasurementServiceImplTest {
     public void givenQuantityMeasurement_WhenOneFeetConvertIntoInch_ThenReturnTwelve() throws QuantityMeasurementException {
         Quantity quantity = new Quantity();
         quantity.setQuantity(1);
-        quantity.setBaseUnit(BaseUnit.Length);
         quantity.setFirstSubUnit(UnitConversion.Feet);
         quantity.setSecondSubUnit(UnitConversion.Inch);
         double result = quantityMeasurementService.unitConversion(quantity);
@@ -36,28 +30,13 @@ public class QuantityMeasurementServiceImplTest {
     }
 
     @Test
-    public void givenQuantityMeasurement_WhenTwoDifferentBaseUnits_ThenThrowException() {
-        try {
-            Quantity quantity = new Quantity();
-            quantity.setQuantity(1);
-            quantity.setBaseUnit(BaseUnit.Length);
-            quantity.setFirstSubUnit(UnitConversion.Feet);
-            quantity.setSecondSubUnit(UnitConversion.KG);
-            double result = quantityMeasurementService.unitConversion(quantity);
-        } catch (QuantityMeasurementException e) {
-            Assert.assertEquals("Base Units Not Matches",e.getMessage());
-        }
-    }
-
-    @Test
-    public void givenQuantityMeasurement_WhenOneCelsiusConvertIntoFahrenheit_ThenReturnThirtyThreePointEight() throws QuantityMeasurementException {
+    public void givenQuantityMeasurement_WhenOneYardConvertToInch_ThenReturnThirtySix() throws Exception {
         Quantity quantity = new Quantity();
         quantity.setQuantity(1);
-        quantity.setBaseUnit(BaseUnit.Temperature);
-        quantity.setFirstSubUnit(UnitConversion.Celsius);
-        quantity.setSecondSubUnit(UnitConversion.Fahrenheit);
+        quantity.setFirstSubUnit(UnitConversion.Yard);
+        quantity.setSecondSubUnit(UnitConversion.Inch);
         double result = quantityMeasurementService.unitConversion(quantity);
-        Assert.assertEquals(33.8,result,0.0);
+        Assert.assertEquals(36,result,0.0);
     }
 
     @Test

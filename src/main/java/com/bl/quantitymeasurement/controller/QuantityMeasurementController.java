@@ -20,7 +20,7 @@ public class QuantityMeasurementController {
     @Autowired
     private IQuantityMeasurementService quantityMeasurementService;
 
-    @GetMapping("/convert")
+    @PostMapping("/convert")
     public ResponseEntity conversion(@RequestBody Quantity quantity) throws QuantityMeasurementException {
         return new ResponseEntity(new Response("Unit Converted Successfully",
                 quantityMeasurementService.unitConversion(quantity)),HttpStatus.OK);

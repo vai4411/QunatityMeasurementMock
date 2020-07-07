@@ -1,15 +1,24 @@
 package com.bl.quantitymeasurement.enums;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 public enum UnitConversion {
+
     Feet(12, BaseUnit.Length),
     Inch(1, BaseUnit.Length),
     Yard(36,BaseUnit.Length),
-    CM(0.4,BaseUnit.Length),
+    Centimeter(0.4,BaseUnit.Length),
 
-    KG(1,BaseUnit.Weight),
+    Kilogram(1,BaseUnit.Weight),
+    Gram(0.001,BaseUnit.Weight),
+    Tonne(1000,BaseUnit.Weight),
 
-    Celsius(1,BaseUnit.Temperature),
-    Fahrenheit(1,BaseUnit.Temperature);
+    Litre(1,BaseUnit.Volume),
+    Gallon(3.78,BaseUnit.Volume),
+    Millilitre(0.001,BaseUnit.Volume),
+
+    Celsius(1.8,BaseUnit.Temperature),
+    Fahrenheit(0.55555555,BaseUnit.Temperature);
 
     private final double unit;
     private final BaseUnit baseUnit;
@@ -17,6 +26,16 @@ public enum UnitConversion {
     UnitConversion(double unit, BaseUnit baseUnit) {
         this.unit = unit;
         this.baseUnit = baseUnit;
+    }
+
+    @JsonCreator
+    public static UnitConversion fromString(String key) {
+        for(UnitConversion type : UnitConversion.values()) {
+            if(type.name().equalsIgnoreCase(key)) {
+                return type;
+            }
+        }
+        return null;
     }
 
     public double getUnit() {

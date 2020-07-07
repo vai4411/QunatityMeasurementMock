@@ -386,4 +386,22 @@ public class QuantityMeasurementControllerTest {
         String content = result.getResponse().getContentAsString();
         Assert.assertEquals(response,content);
     }
+
+    @Test
+    public void givenQuantityMeasurement_WhenTwoHundredTwelveFahrenheitConvertToCelsius_ThenReturnHundredResponse() throws Exception {
+        Quantity quantity = new Quantity();
+        quantity.setQuantity(212);
+        quantity.setFirstSubUnit(UnitConversion.Celsius);
+        quantity.setSecondSubUnit(UnitConversion.Fahrenheit);
+        String response = mapper.writeValueAsString(new Response("Unit Converted Successfully", 100.0));
+        Mockito.when(quantityMeasurementServiceImpl.unitConversion(Mockito.any())).thenReturn(100.0);
+        String data = mapper.writeValueAsString(quantity);
+        MvcResult result = mockMvc.perform(post("/quantity/convertSubUnitsNames")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(data))
+                .andExpect(status().isOk())
+                .andReturn();
+        String content = result.getResponse().getContentAsString();
+        Assert.assertEquals(response,content);
+    }
 }

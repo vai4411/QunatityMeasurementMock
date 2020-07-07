@@ -67,6 +67,21 @@ public class QuantityMeasurementControllerTest {
     }
 
     @Test
+    public void givenQuantityMeasurement_WhenCallSubUnitOfWeight_ThenReturnListOfUnits() throws Exception {
+        List<UnitConversion> units = new ArrayList<>();
+        units.add(UnitConversion.Kilogram);
+        units.add(UnitConversion.Gram);
+        units.add(UnitConversion.Tonne);
+        Mockito.when(quantityMeasurementServiceImpl.getSubUnits(Mockito.any())).thenReturn(units);
+        String data = mapper.writeValueAsString(units);
+        MvcResult result = mockMvc.perform(get("/quantity/subUnits/Weight"))
+                .andExpect(status().isOk())
+                .andReturn();
+        String content = result.getResponse().getContentAsString();
+        Assert.assertEquals(data,content);
+    }
+
+    @Test
     public void givenQuantityMeasurement_WhenOneFeetConvertIntoInch_ThenReturnTwelveInResponse() throws Exception {
         Quantity quantity = new Quantity();
         quantity.setQuantity(1);

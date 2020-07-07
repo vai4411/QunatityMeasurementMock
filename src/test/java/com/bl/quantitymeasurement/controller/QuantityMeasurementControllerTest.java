@@ -97,6 +97,20 @@ public class QuantityMeasurementControllerTest {
     }
 
     @Test
+    public void givenQuantityMeasurement_WhenCallSubUnitOfTemperature_ThenReturnListOfUnits() throws Exception {
+        List<UnitConversion> units = new ArrayList<>();
+        units.add(UnitConversion.Celsius);
+        units.add(UnitConversion.Fahrenheit);
+        Mockito.when(quantityMeasurementServiceImpl.getSubUnits(Mockito.any())).thenReturn(units);
+        String data = mapper.writeValueAsString(units);
+        MvcResult result = mockMvc.perform(get("/quantity/subUnits/TEMPERATURE"))
+                .andExpect(status().isOk())
+                .andReturn();
+        String content = result.getResponse().getContentAsString();
+        Assert.assertEquals(data,content);
+    }
+
+    @Test
     public void givenQuantityMeasurement_WhenOneFeetConvertIntoInch_ThenReturnTwelveInResponse() throws Exception {
         Quantity quantity = new Quantity();
         quantity.setQuantity(1);

@@ -62,6 +62,15 @@ public class QuantityMeasurementServiceImplTest {
     }
 
     @Test
+    public void givenQuantityMeasurement_WhenCallSubBaseUnitOfTemperature_ThenReturnListOfUnits() {
+        List<UnitConversion> units = new ArrayList<>();
+        units.add(UnitConversion.Celsius);
+        units.add(UnitConversion.Fahrenheit);
+        List baseUnits = quantityMeasurementService.getSubUnits(BaseUnit.Temperature);
+        Assert.assertEquals(units,baseUnits);
+    }
+
+    @Test
     public void givenQuantityMeasurement_WhenOneFeetConvertIntoInch_ThenReturnTwelve() throws QuantityMeasurementException {
         Quantity quantity = new Quantity();
         quantity.setQuantity(1);

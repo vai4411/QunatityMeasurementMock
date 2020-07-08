@@ -211,6 +211,16 @@ public class QuantityMeasurementServiceImplTest {
     }
 
     @Test
+    public void givenQuantityMeasurement_WhenThousandMLConvertToLitre_ThenReturnOne() throws Exception {
+        Quantity quantity = new Quantity();
+        quantity.setQuantity(1000);
+        quantity.setFirstSubUnit(UnitConversion.Millilitre);
+        quantity.setSecondSubUnit(UnitConversion.Litre);
+        double result = quantityMeasurementService.unitConversion(quantity);
+        Assert.assertEquals(1.0,result,0.0);
+    }
+
+    @Test
     public void givenQuantityMeasurement_WhenHundredCelsiusConvertIntoFahrenheit_ThenReturnTwoHundredTwelve() throws QuantityMeasurementException {
         Quantity quantity = new Quantity();
         quantity.setQuantity(100);

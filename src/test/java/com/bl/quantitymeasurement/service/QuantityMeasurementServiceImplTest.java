@@ -42,6 +42,16 @@ public class QuantityMeasurementServiceImplTest {
     }
 
     @Test
+    public void givenQuantityMeasurement_WhenCallSubBaseUnitOfWeight_ThenReturnListOfUnits() {
+        List<UnitConversion> units = new ArrayList<>();
+        units.add(UnitConversion.Kilogram);
+        units.add(UnitConversion.Gram);
+        units.add(UnitConversion.Tonne);
+        List baseUnits = quantityMeasurementService.getSubUnits(BaseUnit.Weight);
+        Assert.assertEquals(units,baseUnits);
+    }
+
+    @Test
     public void givenQuantityMeasurement_WhenOneFeetConvertIntoInch_ThenReturnTwelve() throws QuantityMeasurementException {
         Quantity quantity = new Quantity();
         quantity.setQuantity(1);

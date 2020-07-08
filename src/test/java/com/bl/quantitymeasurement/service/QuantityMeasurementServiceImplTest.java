@@ -171,6 +171,16 @@ public class QuantityMeasurementServiceImplTest {
     }
 
     @Test
+    public void givenQuantityMeasurement_WhenOneTonneConvertToKG_ThenReturnThousand() throws Exception {
+        Quantity quantity = new Quantity();
+        quantity.setQuantity(1);
+        quantity.setFirstSubUnit(UnitConversion.Tonne);
+        quantity.setSecondSubUnit(UnitConversion.Kilogram);
+        double result = quantityMeasurementService.unitConversion(quantity);
+        Assert.assertEquals(1000.0,result,0.0);
+    }
+
+    @Test
     public void givenQuantityMeasurement_WhenHundredCelsiusConvertIntoFahrenheit_ThenReturnTwoHundredTwelve() throws QuantityMeasurementException {
         Quantity quantity = new Quantity();
         quantity.setQuantity(100);

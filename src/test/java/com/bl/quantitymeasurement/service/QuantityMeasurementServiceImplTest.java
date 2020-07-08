@@ -241,6 +241,16 @@ public class QuantityMeasurementServiceImplTest {
     }
 
     @Test
+    public void givenQuantityMeasurement_WhenTwoHundredTwelveFahrenheitConvertToCelsius_ThenReturnHundred() throws Exception {
+        Quantity quantity = new Quantity();
+        quantity.setQuantity(212);
+        quantity.setFirstSubUnit(UnitConversion.Fahrenheit);
+        quantity.setSecondSubUnit(UnitConversion.Celsius);
+        double result =Math.ceil(quantityMeasurementService.unitConversion(quantity));
+        Assert.assertEquals(100.0,result,0.0);
+    }
+
+    @Test
     public void givenQuantityMeasurement_WhenTwoDifferentBaseUnitsPassInRequest_ThenThrowException() {
         try {
             Quantity quantity = new Quantity();

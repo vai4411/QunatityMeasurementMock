@@ -121,6 +121,16 @@ public class QuantityMeasurementServiceImplTest {
     }
 
     @Test
+    public void givenQuantityMeasurement_WhenOneFeetConvertToCM_ThenReturnThirty() throws Exception {
+        Quantity quantity = new Quantity();
+        quantity.setQuantity(1);
+        quantity.setFirstSubUnit(UnitConversion.Feet);
+        quantity.setSecondSubUnit(UnitConversion.Centimeter);
+        double result = quantityMeasurementService.unitConversion(quantity);
+        Assert.assertEquals(30.0,result,0.0);
+    }
+
+    @Test
     public void givenQuantityMeasurement_WhenHundredCelsiusConvertIntoFahrenheit_ThenReturnTwoHundredTwelve() throws QuantityMeasurementException {
         Quantity quantity = new Quantity();
         quantity.setQuantity(100);

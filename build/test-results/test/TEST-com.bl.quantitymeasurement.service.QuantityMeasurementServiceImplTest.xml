@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.bl.quantitymeasurement.service.QuantityMeasurementServiceImplTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-07-07T19:13:17" hostname="DESKTOP-QIO4ADF" time="1.301">
+<testsuite name="com.bl.quantitymeasurement.service.QuantityMeasurementServiceImplTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-08T16:32:53" hostname="DESKTOP-QIO4ADF" time="1.189">
   <properties/>
-  <testcase name="givenQuantityMeasurement_WhenCallBaseUnit_ThenReturnListOfUnits" classname="com.bl.quantitymeasurement.service.QuantityMeasurementServiceImplTest" time="1.259"/>
-  <testcase name="givenQuantityMeasurement_WhenOneYardConvertToInch_ThenReturnThirtySix" classname="com.bl.quantitymeasurement.service.QuantityMeasurementServiceImplTest" time="0.022"/>
-  <testcase name="givenQuantityMeasurement_WhenOneFeetConvertIntoInch_ThenReturnTwelve" classname="com.bl.quantitymeasurement.service.QuantityMeasurementServiceImplTest" time="0.004"/>
+  <testcase name="givenQuantityMeasurement_WhenCallBaseUnit_ThenReturnListOfUnits" classname="com.bl.quantitymeasurement.service.QuantityMeasurementServiceImplTest" time="1.189"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

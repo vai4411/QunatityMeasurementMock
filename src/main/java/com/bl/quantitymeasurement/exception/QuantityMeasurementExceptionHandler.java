@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class QuantityMeasurementExceptionHandler {
 
     @ExceptionHandler
-    public ResponseEntity getException(QuantityMeasurementException quantityMeasurementException) {
+    public ResponseEntity getQuantityMeasurementException(QuantityMeasurementException quantityMeasurementException) {
         return new ResponseEntity(quantityMeasurementException.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(NullPointerException.class)
+    @ExceptionHandler(Exception.class)
     public ResponseEntity getException() {
-        return new ResponseEntity("Null Or Empty Values Not Accepted", HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity("Please Enter Proper Units And Quantity", HttpStatus.BAD_REQUEST);
     }
 }

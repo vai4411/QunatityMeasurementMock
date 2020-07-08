@@ -4,6 +4,7 @@ import com.bl.quantitymeasurement.enums.BaseUnit;
 import com.bl.quantitymeasurement.enums.UnitConversion;
 import com.bl.quantitymeasurement.exception.QuantityMeasurementException;
 import com.bl.quantitymeasurement.model.Quantity;
+import com.bl.quantitymeasurement.util.ConstantMessage;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -15,7 +16,8 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
 
     @Override
     public double unitConversion(Quantity quantity) throws QuantityMeasurementException {
-        if (quantity.getFirstSubUnit().getBaseUnit().equals(quantity.getSecondSubUnit().getBaseUnit())) {
+        try {
+            if (quantity.getFirstSubUnit().getBaseUnit().equals(quantity.getSecondSubUnit().getBaseUnit())) {
                 if (quantity.getFirstSubUnit().equals(UnitConversion.Celsius) && quantity.getSecondSubUnit().equals(UnitConversion.Fahrenheit)) {
                     return (quantity.getQuantity() * quantity.getFirstSubUnit().getUnit()) + 32;
                 }
@@ -23,15 +25,18 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
                     return (quantity.getQuantity() - 32) * quantity.getFirstSubUnit().getUnit();
                 }
                 return quantity.getQuantity() * quantity.getFirstSubUnit().getUnit() / quantity.getSecondSubUnit().getUnit();
-        } else
-            throw new QuantityMeasurementException(quantity.getFirstSubUnit()+" Not Converted Into "+quantity.getSecondSubUnit());
+            } else
+                throw new QuantityMeasurementException(ConstantMessage.getConversionFailException);
+        } catch (NullPointerException e) {
+            throw new QuantityMeasurementException(ConstantMessage.getNullValueException);
+        }
     }
 
     @Override
     public List<UnitConversion> getSubUnits(BaseUnit baseUnit) {
-        return Arrays.stream(UnitConversion.values())
-                .filter(qUnit -> qUnit.getBaseUnit().equals(baseUnit))
-                .collect(Collectors.toList());
+            return Arrays.stream(UnitConversion.values())
+                    .filter(qUnit -> qUnit.getBaseUnit().equals(baseUnit))
+                    .collect(Collectors.toList());
     }
 
     @Override

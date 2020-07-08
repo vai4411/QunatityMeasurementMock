@@ -1,17 +1,16 @@
 package com.bl.quantitymeasurement.controller;
 
 import com.bl.quantitymeasurement.enums.BaseUnit;
-import com.bl.quantitymeasurement.enums.UnitConversion;
 import com.bl.quantitymeasurement.exception.QuantityMeasurementException;
 import com.bl.quantitymeasurement.model.Quantity;
-import com.bl.quantitymeasurement.model.Response;
+import com.bl.quantitymeasurement.model.ConversionResponse;
+import com.bl.quantitymeasurement.model.UnitListResponse;
 import com.bl.quantitymeasurement.service.IQuantityMeasurementService;
+import com.bl.quantitymeasurement.util.ConstantMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/quantity")
@@ -22,19 +21,19 @@ public class QuantityMeasurementController {
 
     @PostMapping("/convert")
     public ResponseEntity conversion(@RequestBody Quantity quantity) throws QuantityMeasurementException {
-        return new ResponseEntity(new Response("Unit Converted Successfully",
+        return new ResponseEntity(new ConversionResponse(ConstantMessage.getConversionSuccessfully,
                 quantityMeasurementService.unitConversion(quantity)),HttpStatus.OK);
     }
 
     @GetMapping("/subUnits/{baseUnit}")
-    public List<UnitConversion> conversion(@PathVariable BaseUnit baseUnit) {
-        List<UnitConversion> result = quantityMeasurementService.getSubUnits(baseUnit);
-        return result;
+    public ResponseEntity conversion(@PathVariable BaseUnit baseUnit) {
+        return new ResponseEntity(new UnitListResponse(ConstantMessage.getSubUnitListSuccessfully,
+                quantityMeasurementService.getSubUnits(baseUnit)),HttpStatus.OK);
     }
 
     @GetMapping("/baseUnits")
-    public List<BaseUnit> baseUnits() {
-        List<BaseUnit> result = quantityMeasurementService.getBaseUnits();
-        return result;
+    public ResponseEntity baseUnits() {
+        return new ResponseEntity(new UnitListResponse(ConstantMessage.getBaseUnitListSuccessfully,
+                quantityMeasurementService.getBaseUnits()),HttpStatus.OK);
     }
 }

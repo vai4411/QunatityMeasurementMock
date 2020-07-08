@@ -262,4 +262,16 @@ public class QuantityMeasurementServiceImplTest {
             Assert.assertEquals(ConstantMessage.getConversionFailException,e.getMessage());
         }
     }
+
+    @Test
+    public void givenQuantityMeasurement_WhenNullOrEmptySubUnitsPassInRequest_ThenThrowException() {
+        try {
+            Quantity quantity = new Quantity();
+            quantity.setQuantity(1);
+            quantity.setSecondSubUnit(UnitConversion.Kilogram);
+            quantityMeasurementService.unitConversion(quantity);
+        } catch (QuantityMeasurementException e) {
+            Assert.assertEquals(ConstantMessage.getNullValueException,e.getMessage());
+        }
+    }
 }

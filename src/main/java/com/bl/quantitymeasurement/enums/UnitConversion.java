@@ -28,6 +28,11 @@ public enum UnitConversion {
         this.baseUnit = baseUnit;
     }
 
+    /**+
+     * @purpose : This Method Use For Handling Proper BaseUnit Name Handling.
+     * @param key
+     * @return : Type Of SubUnit.
+     */
     @JsonCreator
     public static UnitConversion fromString(String key) {
         for(UnitConversion type : UnitConversion.values()) {

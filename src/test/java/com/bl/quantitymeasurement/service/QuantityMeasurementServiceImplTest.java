@@ -1,10 +1,10 @@
 package com.bl.quantitymeasurement.service;
 
 import com.bl.quantitymeasurement.enums.BaseUnit;
+import com.bl.quantitymeasurement.enums.ResponseExceptionData;
 import com.bl.quantitymeasurement.enums.UnitConversion;
 import com.bl.quantitymeasurement.exception.QuantityMeasurementException;
 import com.bl.quantitymeasurement.model.Quantity;
-import com.bl.quantitymeasurement.util.ConstantMessage;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -76,8 +76,8 @@ public class QuantityMeasurementServiceImplTest {
         quantity.setQuantity(1);
         quantity.setFirstSubUnit(UnitConversion.Feet);
         quantity.setSecondSubUnit(UnitConversion.Inch);
-        double result = quantityMeasurementService.unitConversion(quantity);
-        Assert.assertEquals(12.0,result,0.0);
+        String result = quantityMeasurementService.unitConversion(quantity);
+        Assert.assertEquals("12.0",result);
     }
 
     @Test
@@ -86,8 +86,8 @@ public class QuantityMeasurementServiceImplTest {
         quantity.setQuantity(1);
         quantity.setFirstSubUnit(UnitConversion.Yard);
         quantity.setSecondSubUnit(UnitConversion.Inch);
-        double result = quantityMeasurementService.unitConversion(quantity);
-        Assert.assertEquals(36,result,0.0);
+        String  result = quantityMeasurementService.unitConversion(quantity);
+        Assert.assertEquals("36.0",result);
     }
 
     @Test
@@ -96,8 +96,8 @@ public class QuantityMeasurementServiceImplTest {
         quantity.setQuantity(5);
         quantity.setFirstSubUnit(UnitConversion.Centimeter);
         quantity.setSecondSubUnit(UnitConversion.Inch);
-        double result = quantityMeasurementService.unitConversion(quantity);
-        Assert.assertEquals(2.0,result,0.0);
+        String result = quantityMeasurementService.unitConversion(quantity);
+        Assert.assertEquals("2.0",result);
     }
 
     @Test
@@ -106,8 +106,8 @@ public class QuantityMeasurementServiceImplTest {
         quantity.setQuantity(2);
         quantity.setFirstSubUnit(UnitConversion.Inch);
         quantity.setSecondSubUnit(UnitConversion.Centimeter);
-        double result = quantityMeasurementService.unitConversion(quantity);
-        Assert.assertEquals(5.0,result,0.0);
+        String result = quantityMeasurementService.unitConversion(quantity);
+        Assert.assertEquals("5.0",result);
     }
 
     @Test
@@ -116,8 +116,8 @@ public class QuantityMeasurementServiceImplTest {
         quantity.setQuantity(1);
         quantity.setFirstSubUnit(UnitConversion.Yard);
         quantity.setSecondSubUnit(UnitConversion.Centimeter);
-        double result = quantityMeasurementService.unitConversion(quantity);
-        Assert.assertEquals(90.0,result,0.0);
+        String result = quantityMeasurementService.unitConversion(quantity);
+        Assert.assertEquals("90.0",result);
     }
 
     @Test
@@ -126,8 +126,8 @@ public class QuantityMeasurementServiceImplTest {
         quantity.setQuantity(1);
         quantity.setFirstSubUnit(UnitConversion.Feet);
         quantity.setSecondSubUnit(UnitConversion.Centimeter);
-        double result = quantityMeasurementService.unitConversion(quantity);
-        Assert.assertEquals(30.0,result,0.0);
+        String result = quantityMeasurementService.unitConversion(quantity);
+        Assert.assertEquals("30.0",result);
     }
 
     @Test
@@ -136,8 +136,8 @@ public class QuantityMeasurementServiceImplTest {
         quantity.setQuantity(12);
         quantity.setFirstSubUnit(UnitConversion.Inch);
         quantity.setSecondSubUnit(UnitConversion.Feet);
-        double result = quantityMeasurementService.unitConversion(quantity);
-        Assert.assertEquals(1.0,result,0.0);
+        String result = quantityMeasurementService.unitConversion(quantity);
+        Assert.assertEquals("1.0",result);
     }
 
     @Test
@@ -146,8 +146,8 @@ public class QuantityMeasurementServiceImplTest {
         quantity.setQuantity(1);
         quantity.setFirstSubUnit(UnitConversion.Yard);
         quantity.setSecondSubUnit(UnitConversion.Feet);
-        double result = quantityMeasurementService.unitConversion(quantity);
-        Assert.assertEquals(3.0,result,0.0);
+        String result = quantityMeasurementService.unitConversion(quantity);
+        Assert.assertEquals("3.0",result);
     }
 
     @Test
@@ -156,8 +156,8 @@ public class QuantityMeasurementServiceImplTest {
         quantity.setQuantity(1);
         quantity.setFirstSubUnit(UnitConversion.Kilogram);
         quantity.setSecondSubUnit(UnitConversion.Gram);
-        double result = quantityMeasurementService.unitConversion(quantity);
-        Assert.assertEquals(1000.0,result,0.0);
+        String result = quantityMeasurementService.unitConversion(quantity);
+        Assert.assertEquals("1000.0",result);
     }
 
     @Test
@@ -166,8 +166,8 @@ public class QuantityMeasurementServiceImplTest {
         quantity.setQuantity(1000);
         quantity.setFirstSubUnit(UnitConversion.Kilogram);
         quantity.setSecondSubUnit(UnitConversion.Tonne);
-        double result = quantityMeasurementService.unitConversion(quantity);
-        Assert.assertEquals(1.0,result,0.0);
+        String result = quantityMeasurementService.unitConversion(quantity);
+        Assert.assertEquals("1.0",result);
     }
 
     @Test
@@ -176,8 +176,8 @@ public class QuantityMeasurementServiceImplTest {
         quantity.setQuantity(1);
         quantity.setFirstSubUnit(UnitConversion.Tonne);
         quantity.setSecondSubUnit(UnitConversion.Kilogram);
-        double result = quantityMeasurementService.unitConversion(quantity);
-        Assert.assertEquals(1000.0,result,0.0);
+        String result = quantityMeasurementService.unitConversion(quantity);
+        Assert.assertEquals("1000.0",result);
     }
 
     @Test
@@ -186,8 +186,8 @@ public class QuantityMeasurementServiceImplTest {
         quantity.setQuantity(0.001);
         quantity.setFirstSubUnit(UnitConversion.Tonne);
         quantity.setSecondSubUnit(UnitConversion.Gram);
-        double result = quantityMeasurementService.unitConversion(quantity);
-        Assert.assertEquals(1000.0,result,0.0);
+        String result = quantityMeasurementService.unitConversion(quantity);
+        Assert.assertEquals("1000.0",result);
     }
 
     @Test
@@ -196,8 +196,8 @@ public class QuantityMeasurementServiceImplTest {
         quantity.setQuantity(1);
         quantity.setFirstSubUnit(UnitConversion.Litre);
         quantity.setSecondSubUnit(UnitConversion.Millilitre);
-        double result = quantityMeasurementService.unitConversion(quantity);
-        Assert.assertEquals(1000.0,result,0.0);
+        String result = quantityMeasurementService.unitConversion(quantity);
+        Assert.assertEquals("1000.0",result);
     }
 
     @Test
@@ -206,8 +206,8 @@ public class QuantityMeasurementServiceImplTest {
         quantity.setQuantity(3.78);
         quantity.setFirstSubUnit(UnitConversion.Litre);
         quantity.setSecondSubUnit(UnitConversion.Gallon);
-        double result = quantityMeasurementService.unitConversion(quantity);
-        Assert.assertEquals(1.0,result,0.0);
+        String result = quantityMeasurementService.unitConversion(quantity);
+        Assert.assertEquals("1.0",result);
     }
 
     @Test
@@ -216,8 +216,8 @@ public class QuantityMeasurementServiceImplTest {
         quantity.setQuantity(1000);
         quantity.setFirstSubUnit(UnitConversion.Millilitre);
         quantity.setSecondSubUnit(UnitConversion.Litre);
-        double result = quantityMeasurementService.unitConversion(quantity);
-        Assert.assertEquals(1.0,result,0.0);
+        String result = quantityMeasurementService.unitConversion(quantity);
+        Assert.assertEquals("1.0",result);
     }
 
     @Test
@@ -226,8 +226,8 @@ public class QuantityMeasurementServiceImplTest {
         quantity.setQuantity(3780);
         quantity.setFirstSubUnit(UnitConversion.Millilitre);
         quantity.setSecondSubUnit(UnitConversion.Gallon);
-        int result =(int) quantityMeasurementService.unitConversion(quantity);
-        Assert.assertEquals(1.0,result,0.0);
+        String result = quantityMeasurementService.unitConversion(quantity);
+        Assert.assertEquals("1.0000000000000002",result);
     }
 
     @Test
@@ -236,8 +236,8 @@ public class QuantityMeasurementServiceImplTest {
         quantity.setQuantity(100);
         quantity.setFirstSubUnit(UnitConversion.Celsius);
         quantity.setSecondSubUnit(UnitConversion.Fahrenheit);
-        double result = quantityMeasurementService.unitConversion(quantity);
-        Assert.assertEquals(212.0,result,0.0);
+        String result = quantityMeasurementService.unitConversion(quantity);
+        Assert.assertEquals("212.0",result);
     }
 
     @Test
@@ -246,8 +246,8 @@ public class QuantityMeasurementServiceImplTest {
         quantity.setQuantity(212);
         quantity.setFirstSubUnit(UnitConversion.Fahrenheit);
         quantity.setSecondSubUnit(UnitConversion.Celsius);
-        double result =Math.ceil(quantityMeasurementService.unitConversion(quantity));
-        Assert.assertEquals(100.0,result,0.0);
+        String result =quantityMeasurementService.unitConversion(quantity);
+        Assert.assertEquals("99.999999",result);
     }
 
     @Test
@@ -259,7 +259,7 @@ public class QuantityMeasurementServiceImplTest {
             quantity.setSecondSubUnit(UnitConversion.Kilogram);
             quantityMeasurementService.unitConversion(quantity);
         } catch (QuantityMeasurementException e) {
-            Assert.assertEquals(ConstantMessage.getConversionFailException,e.getMessage());
+            Assert.assertEquals(ResponseExceptionData.TypeMisMatchException.getData(),e.getMessage());
         }
     }
 
@@ -271,7 +271,7 @@ public class QuantityMeasurementServiceImplTest {
             quantity.setSecondSubUnit(UnitConversion.Kilogram);
             quantityMeasurementService.unitConversion(quantity);
         } catch (QuantityMeasurementException e) {
-            Assert.assertEquals(ConstantMessage.getNullValueException,e.getMessage());
+            Assert.assertEquals(ResponseExceptionData.Exception.getData(),e.getMessage());
         }
     }
 }

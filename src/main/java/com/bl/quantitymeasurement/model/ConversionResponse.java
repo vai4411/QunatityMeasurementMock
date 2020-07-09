@@ -1,14 +1,15 @@
 package com.bl.quantitymeasurement.model;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class ConversionResponse implements Serializable {
 
+    private int status;
     private String message;
-    private double result;
+    private String result;
 
-    public ConversionResponse(String message, double result) {
+    public ConversionResponse(int status, String message, String result) {
+        this.status = status;
         this.message = message;
         this.result = result;
     }
@@ -21,11 +22,19 @@ public class ConversionResponse implements Serializable {
         this.message = message;
     }
 
-    public double getResult() {
+    public String getResult() {
         return result;
     }
 
-    public void setResult(double result) {
+    public void setResult(String result) {
         this.result = result;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

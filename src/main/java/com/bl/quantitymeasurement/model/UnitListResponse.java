@@ -4,10 +4,12 @@ import java.util.List;
 
 public class UnitListResponse {
 
+    private int status;
     private String message;
     private List units;
 
-    public UnitListResponse(String message, List units) {
+    public UnitListResponse(int status, String message, List units) {
+        this.status = status;
         this.message = message;
         this.units = units;
     }
@@ -26,5 +28,13 @@ public class UnitListResponse {
 
     public void setUnits(List units) {
         this.units = units;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }
